@@ -1,0 +1,24 @@
+```
+# Compiled and build artifacts
+*.o
+*.obj
+*.out
+
+# Dependencies
+*.a
+*.so
+*.dll
+*.dylib
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Editors
+*.swp
+*.swo
+
+# Build directories
+build/
+dist/
+```
