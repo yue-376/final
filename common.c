@@ -1,14 +1,8 @@
-/*
- * 文件：common.c
- * 说明：通用工具函数实现文件
- */
+// common.c - 通用工具函数
 
 #include "common.h"
 
-/*
- * 函数：trim_newline - 去除字符串末尾的换行符
- * 参数：s - 待处理的字符串指针
- */
+// 去除字符串末尾的换行符
 void trim_newline(char *s)
 {
     if (!s)
@@ -20,9 +14,7 @@ void trim_newline(char *s)
     }
 }
 
-/*
- * 函数：clear_input_buffer - 清空输入缓冲区
- */
+// 清空输入缓冲区
 void clear_input_buffer(void)
 {
     int c;
@@ -31,10 +23,7 @@ void clear_input_buffer(void)
     }
 }
 
-/*
- * 函数：read_line - 读取一行用户输入
- * 参数：prompt 提示信息，buf 存储输入的缓冲区，size 缓冲区大小
- */
+// 读取一行用户输入
 void read_line(const char *prompt, char *buf, int size)
 {
     if (prompt)
@@ -47,10 +36,7 @@ void read_line(const char *prompt, char *buf, int size)
     trim_newline(buf);
 }
 
-/*
- * 函数：safe_copy - 安全地复制字符串，防止缓冲区溢出
- * 参数：dst 目标缓冲区，src 源字符串，n 目标缓冲区大小
- */
+// 安全地复制字符串，防止缓冲区溢出
 void safe_copy(char *dst, const char *src, size_t n)
 {
     if (!dst || !src || n == 0)
@@ -59,11 +45,7 @@ void safe_copy(char *dst, const char *src, size_t n)
     dst[n - 1] = '\0';
 }
 
-/*
- * 函数：validate_gender - 验证性别输入是否有效
- * 参数：gender 性别字符串
- * 返回值：1 表示有效（"男"或"女"），0 表示无效
- */
+// 验证性别输入是否有效（"男"或"女"）
 int validate_gender(const char *gender)
 {
     if (!gender || strlen(gender) == 0)
@@ -73,11 +55,7 @@ int validate_gender(const char *gender)
     return 0;
 }
 
-/*
- * 函数：validate_date - 验证日期格式是否为 YYYY-MM-DD
- * 参数：date 日期字符串
- * 返回值：1 表示有效，0 表示无效
- */
+// 验证日期格式是否为 YYYY-MM-DD
 int validate_date(const char *date)
 {
     if (!date || strlen(date) != 10)
@@ -116,22 +94,7 @@ int validate_date(const char *date)
     return 1;
 }
 
-/*
- * 说明：验证手机号是否为 11 位数字且以 1 开头
- * 参数：phone 手机号字符串
- * 返回值：1 表示有效，0 表示无效
- * 
- * 验证规则（针对中国大陆手机号）：
- * 1. 必须是 11 位数字（不多不少正好 11 位）
- * 2. 第一位必须是'1'（中国手机号都以 1 开头）
- * 3. 所有位都必须是数字（不能有字母、空格或其他符号）
- * 函数用途：
- * 验证中国大陆手机号格式：11 位数字且以 1 开头。
- * 拒绝带分隔符、长度错误或首位非 1 的输入，确保号码格式统一。
- *
- * 注意：此函数仅验证格式，不验证号码是否真实有效。
- * 也就是说"11111111111"能通过验证（虽然这不是一个真实的号码）。
- */
+// 验证手机号：11 位数字且以 1 开头
 int validate_phone(const char *phone)
 {
     if (!phone)
@@ -149,12 +112,7 @@ int validate_phone(const char *phone)
     return 1;
 }
 
-/*
- * 函数：read_line_with_validate - 读取带验证的输入，支持输入"0"返回上一步
- * 参数：prompt 提示信息，buf 存储输入的缓冲区，size 缓冲区大小
- *       validate_func 验证函数指针，error_msg 验证失败时的错误提示
- * 返回值：1 表示成功，0 表示用户选择返回
- */
+// 读取带验证的输入，支持输入"0"返回上一步
 int read_line_with_validate(const char *prompt, char *buf, int size, 
                             int (*validate_func)(const char *), 
                             const char *error_msg)
@@ -176,11 +134,7 @@ int read_line_with_validate(const char *prompt, char *buf, int size,
     }
 }
 
-/*
- * 函数：read_int - 读取指定范围内的整数
- * 参数：prompt 提示信息，min 最小值，max 最大值
- * 返回值：有效的整数值（在 min~max 范围内）
- */
+// 读取指定范围内的整数
 int read_int(const char *prompt, int min, int max)
 {
     char line[64];
@@ -202,21 +156,14 @@ int read_int(const char *prompt, int min, int max)
     }
 }
 
-/*
- * 函数：pause_and_wait - 暂停程序，等待用户按回车键继续
- */
+// 暂停程序，等待用户按回车键继续
 void pause_and_wait(void)
 {
     printf("\n按回车继续...");
     getchar();
 }
 
-/*
- * 说明：忽略大小写比较两个字符串
- * 参数：a 第一个字符串
- * 参数：b 第二个字符串
- * 返回值：1 表示相等，0 表示不等
- */
+// 忽略大小写比较两个字符串
 int str_equal_ignore_case(const char *a, const char *b)
 {
     while (*a && *b)
